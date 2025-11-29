@@ -1,3 +1,9 @@
+/**
+ * [PARADIGMA ESTRUCTURADO / IMPERATIVO]
+ * Orquesta la aplicación. Se basa en SECUENCIA, SELECCIÓN e ITERACIÓN.
+ * Es el "pegamento" que une los módulos de los otros paradigmas.
+ */
+
 import promptSync from "prompt-sync";
 import { ServicioTareas } from "./src/services/ServicioTareas.js";
 import { ordenarPor, obtenerEstadisticas } from "./src/functional/estadisticas.js";
@@ -6,6 +12,7 @@ import { consultar, Reglas, buscarRelacionadas } from "./src/logic/predicados.js
 const prompt = promptSync();
 const servicio = new ServicioTareas();
 
+// [MODULARIZACIÓN] Procedimiento para limpiar el código principal.
 function mostrarMenu() {
     console.log("\n=== GESTOR DE TAREAS MULTIPARADIGMA ===");
     console.log("[1] Ver todas las tareas");
@@ -30,10 +37,14 @@ function pedirDato(texto, opcional = false) {
 function main() {
     let continuar = true;
 
+    // [ITERACIÓN] Bucle principal del programa (Game Loop)
+
     while (continuar) {
         mostrarMenu();
         const opcion = prompt("Elija una opción: ");
 
+
+        // [SELECCIÓN] Estructura de control Switch para decidir el flujo
         switch (opcion) {
             case "1": // Listar
                 let tareas = servicio.obtenerTodas();
@@ -47,13 +58,13 @@ function main() {
                 tareas.forEach(t => console.log(t.toString()));
                 break;
 
-            case "2": // Buscar
+            case "2": // Busqueda imperativa 
                 const query = prompt("Buscar: ").toLowerCase();
                 const encontradas = servicio.obtenerTodas().filter(t => t.titulo.toLowerCase().includes(query));
                 encontradas.forEach(t => console.log(t.toString()));
                 break;
 
-            case "3": // Agregar
+            case "3": // Gestion de estado (OOP)
                 console.log("\n--- NUEVA TAREA ---");
                 const tit = pedirDato("Título: ");
                 const desc = prompt("Descripción: ");
@@ -65,7 +76,7 @@ function main() {
                 console.log("✅ Tarea guardada.");
                 break;
 
-            case "4": // Editar
+            case "4": // Modificacion de estado (OOP)
                 const idBus = prompt("Ingrese ID (o parte del ID): ");
                 const tareaEd = servicio.obtenerTodas().find(t => t.id.includes(idBus));
                 
@@ -100,13 +111,14 @@ function main() {
                 }
                 break;
 
-            case "6": // Estadísticas
+            case "6": // Integración funcional
+            //Llamada a la función pura para obtener estadísticas
                 const stats = obtenerEstadisticas(servicio.obtenerTodas());
                 console.log("\n--- ESTADÍSTICAS ---");
                 console.table(stats);
                 break;
 
-            case "7": // Lógica
+            case "7": // Integracion Lógica
                 const todas = servicio.obtenerTodas();
                 console.log("\n[A] Vencidas | [B] Prioridad Alta | [C] Relacionadas");
                 const subOp = prompt("Opción: ").toUpperCase();

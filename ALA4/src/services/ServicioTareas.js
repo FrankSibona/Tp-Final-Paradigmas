@@ -8,11 +8,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const RUTA_DATA = path.join(__dirname, '../../data/tareas.json');
 
+
+// [PARADIGMA POO] Clase Servicio: Encapsula la lógica de negocio y persistencia.
+// Responsable de manejar el "ciclo de vida" de los objetos Tarea.
 export class ServicioTareas {
     constructor() {
+        // El servicio es dueño de la lista de tareas (Estado).
         this.tareas = this._cargarDesdeArchivo();
     }
 
+
+    // [OCULTAMIENTO DE INFORMACIÓN] Método "Privado" (por convención con _).
+    // Maneja EFECTOS SECUNDARIOS (Side Effects) de lectura de disco (I/O).
+    // El resto del programa no sabe (ni le importa) que usamos un archivo JSON.
     // Método Privado: Carga datos y reconstruye los objetos Tarea
     _cargarDesdeArchivo() {
         try {
@@ -35,7 +43,7 @@ export class ServicioTareas {
         
         fs.writeFileSync(RUTA_DATA, JSON.stringify(this.tareas, null, 2));
     }
-
+    // Métodos Públicos (Interfaz del Objeto)
     agregar(titulo, desc, estado, dif, vencimiento) {
         const nueva = new Tarea(titulo, desc, estado, dif, vencimiento);
         this.tareas.push(nueva);
@@ -57,6 +65,7 @@ export class ServicioTareas {
         const tarea = this.tareas.find(t => t.id === id);
         if (!tarea) return false;
 
+        // Mutación controlada del estado del objeto
         // Actualizamos solo los campos que vienen con datos
         if (nuevosDatos.titulo) tarea.titulo = nuevosDatos.titulo;
         if (nuevosDatos.descripcion) tarea.descripcion = nuevosDatos.descripcion;
