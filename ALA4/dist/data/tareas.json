@@ -1,0 +1,52 @@
+[
+  {
+    "id": "5305a5b5-a83f-47a7-bd1c-a5718b4c7778",
+    "titulo": "Estudiar TypeScript",
+    "descripcion": "Aprender tipos y interfaces",
+    "estado": "P",
+    "dificultad": 3,
+    "fechaVencimiento": "2025-12-15",
+    "fechaCreacion": "2025-11-30",
+    "activo": true
+  },
+  {
+    "id": "23070692-2e53-479b-bb2c-e1730e3e79d8",
+    "titulo": "Hacer ejercicios",
+    "descripcion": "Práctica de paradigmas",
+    "estado": "T",
+    "dificultad": 2,
+    "fechaVencimiento": "2025-12-10",
+    "fechaCreacion": "2025-11-30",
+    "activo": false
+  },
+  {
+    "id": "a85a5d34-d851-4d24-b232-8a449ec0520d",
+    "titulo": "Revisar código",
+    "descripcion": "Code review del proyecto",
+    "estado": "P",
+    "dificultad": 2,
+    "fechaVencimiento": "2025-11-29",
+    "fechaCreacion": "2025-11-30",
+    "activo": true
+  },
+  {
+    "id": "c657e6a8-2e64-4e1d-811d-ef716828bbc3",
+    "titulo": "Escribir tests",
+    "descripcion": "Cobertura > 80%",
+    "estado": "P",
+    "dificultad": 1,
+    "fechaVencimiento": null,
+    "fechaCreacion": "2025-11-30",
+    "activo": false
+  },
+  {
+    "id": "de0b51ca-d2ad-4f51-bd26-12e1b5e5f143",
+    "titulo": "sibo",
+    "descripcion": "rubi",
+    "estado": "P",
+    "dificultad": 2,
+    "fechaVencimiento": "20-05-2028",
+    "fechaCreacion": "2025-11-30",
+    "activo": true
+  }
+]
